@@ -1,5 +1,5 @@
 
-# Clinical Project: SDTM Domain Creation (DM)
+SDTM Domain Creation (DM)
 
 This document outlines the SAS code used to process and transform raw clinical data from the CDM library into the SDTM DM domain format.
 
