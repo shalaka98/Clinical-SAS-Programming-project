@@ -8,7 +8,7 @@ This document outlines the SAS code used to process and transform raw clinical d
 ## 📁 Library Assignments
 ```sas
 libname CDM "/home/u63603412/clinical_project_part_1/CDM";
-libname SDTN "/home/u63603412/clinical_project_part_1/SDTM";
+libname SDTM "/home/u63603412/clinical_project_part_1/SDTM";
 ```
 
 ---
