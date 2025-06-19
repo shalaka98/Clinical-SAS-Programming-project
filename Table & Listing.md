@@ -1,6 +1,6 @@
 
 #Table & Listing
-## 1. Listing: Medical History (Listing 16.2.4.2)
+## 1. Listing: Medical History 
 
 ```sas
 libname adam '/home/u63603412/study/sdtm/sdtm data';
