@@ -33,13 +33,7 @@ run;
 
 data adm22;
 set adm2;
-by usubjid mhseq ;
-retain rown pgn 0;
-rown + 1;
-if rown>6 then do;
-pgn=pgn+1;
-rown=1;
-end;
+pgn=ceil(_N_/6);
 run;
 
 data L16_2_4_2;
@@ -54,30 +48,24 @@ col6="Clinically Significant?";
 keep col: ;
 run;
 
-ods rtf file="/home/u63603412/study/listing.rtf" style=journal;
-options orientation=landscape nodate nonumber papertype=A4  leftmargin=1in rightmargin=1in topmargin=1in bottommargin=1in;
-ods escapechar="~";
-title j=l font ='Courier New' height = 9pt "Study Code: XXX-YYY-103" j=right "Private and Confidential";
-title2 j=l font ='Courier New' height = 9pt "Statistical Analysis Plan " j=right "Date: &sysdate ";
-title3 j=l font ='Courier New' height = 9pt "Final Version 1.0" j=right 'page ~{pageof} ';
-title4 font ='Courier New' height = 9pt j=center "Listing 16.2.4.2";
-title5 font ='Courier New' height = 9pt j=center "Listing of Medical History";
-title6 font ='Courier New' height = 9pt j=center "Safety Population";
+ods rtf file="/home/u63603412/study/listing.rtf";
 
-proc report data=adm22 split="*"
-style(report)={cellwidth=100% cellpadding=0.5% cellspacing = 5 } 
-style(header)={vjust=t fontweight=bold FONT=("COURIER NEW") FONTSIZE=9PT} 
-style(column)={vjust=t paddingbottom=4mm FONT=("COURIER NEW") FONTSIZE=9PT};
-define col1 /order "Subject ID/*Age/*Gender/*Race" style(header)={just=l asis=on} style(column)={just=l asis=on cellwidth=12%};
-define col2 /order "Cohort/*Dose" style(header)={just=l asis=on} style(column)={just=l asis=on cellwidth=13%};
-define col3 /order=Internal "Medical Condition/Description" style(header)={just=l asis=on} style(column)={just=l asis=on cellwidth=13%};
-define col4 / order=Internal "S: Start Date*E: Stop Date" style(header)={just=l asis=on} style(column)={just=l asis=on cellwidth=8%};
-define col5 / order=Internal "Ongoing?" style(header)={just=l asis=on} style(column)={just=l asis=on cellwidth=8%};
-define col6 / display "Clinically*Significant?" style(header)={just=l asis=on} style(column)={just=l asis=on cellwidth=12%};
-footnote1 j=l font ='Courier New' height = 9pt "Note: M = Male; F = Female. Cohort 1: Caucasian; Cohort 2: Japanese.";
-footnote2 j=l font ='Courier New' height = 9pt "Generated on &sysdate at &systime";
+title "Listing 16.2.4.2 - Medical History";
+
+proc report data=adm22 nowd;
+    column col1 col2 col3 col4 col5 col6;
+
+    define col1 / "Subject ID / Age / Gender / Race";
+    define col2 / "Cohort / Dose";
+    define col3 / "Medical Condition";
+    define col4 / "Start - End Date";
+    define col5 / "Ongoing?";
+    define col6 / "Clinically Significant?";
 run;
+
 ods rtf close;
+
+
 ```
 
 ## 2. Table: Summary of Students (Using `sashelp.class`)
