@@ -50,9 +50,8 @@ Run;
 ```sas
 DATA DM2;
 SET DM1 ;
-if not missing(EXENDAT) then RFENDTC= EXENDAT;
-else if EXENDAT="null" then RFENDTC= EXSTDAT;
-else RFENDTC= CAT(IPFD1DAT,"T", IPFD1TIM);
+if not missing(EXENDAT) then RFENDTC= CAT(IPFD1DAT,"T", IPFD1TIM);
+else if Missing(EXENDAT) then RFENDTC= EXSTDAT;
 
 SITEID = CENTRE;
 BRTHDTC = BRTHDAT;
