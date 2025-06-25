@@ -73,9 +73,7 @@ ods rtf close;
 ```sas
 data one1;
 set sashelp.class;
-OUTPUT;
-SEX = 'TOTAL';
-OUTPUT;
+
 RUN;
 
 proc sort data= one1;
