@@ -19,8 +19,7 @@ data A;
 SET CDM.dm;
 STUDYID = "XYZ";
 DOMAIN = "DM";
-usubjid= cat(STUDYID,"/",SUBJECT);
-SUBJID = SUBJECT;
+usubjid= cat(STUDYID,"/",SUBJCTID,"/", SITEID);
 run;
 ```
 
